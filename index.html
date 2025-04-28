@@ -82,6 +82,12 @@
       color: white;
     }
 
+    select 
+    {
+      -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+    }
     
 
     #main-header nav a.bg-gradient-to-r:hover {
@@ -139,6 +145,36 @@
             margin-top: 1rem;
             text-align: center;
         }
+        input[type="date"],
+input[type="time"] {
+    -webkit-appearance: none; /* Loại bỏ giao diện mặc định của iOS */
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    width: 100%; /* Đảm bảo input chiếm toàn bộ chiều rộng */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+    font-size: 1rem; /* Đồng bộ font */
+    color: #374151; /* text-gray-700 */
+    background-color: #fff; /* Đảm bảo nền trắng */
+    transition: border-color 0.2s ease-in-out; /* transition */
+}
+
+/* Tùy chỉnh khi focus */
+input[type="date"]:focus,
+input[type="time"]:focus {
+    outline: none;
+    border-color: #3b82f6; /* Màu border khi focus (ví dụ: blue-500) */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* Hiệu ứng shadow */
+}
+
+/* Đảm bảo hiển thị tốt trên iOS */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    opacity: 1; /* Hiển thị icon lịch/giờ */
+    padding-right: 0.5rem;
+}
   </style>
 </head>
 
