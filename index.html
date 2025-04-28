@@ -627,8 +627,30 @@ input[type="time"]::-webkit-calendar-picker-indicator {
                     <script>
                         $(document).ready(function () {
                             // Set min date to today
-                            const today = new Date().toISOString().split('T')[0];
-                            $('#pickupDate, #backPickupDate').attr('min', today);
+                            // Get current time and shift to GMT+7
+const now = new Date();
+const timezoneOffset = 7 * 60; // 7 hours * 60 minutes
+
+// Create a new time based on GMT+7
+const localNow = new Date(now.getTime() + (timezoneOffset + now.getTimezoneOffset()) * 60000);
+
+// Format date to 'YYYY-MM-DD'
+const todayDate = localNow.toISOString().split('T')[0];
+
+// Format time to 'HH:MM'
+let hours = localNow.getHours().toString().padStart(2, '0');
+let minutes = localNow.getMinutes().toString().padStart(2, '0');
+const currentTime = `${hours}:${minutes}`;
+
+// Set min and default values for date inputs
+$('#pickupDate, #backPickupDate')
+    .attr('min', todayDate)
+    .val(todayDate);
+
+// Set default values for time inputs
+$('#pickupTime, #backPickupTime')
+    .val(currentTime);
+
 
                             function validateDateTime(dateInput, timeInput) {
                                 const selectedDate = new Date(dateInput.val() + 'T' + timeInput.val());
